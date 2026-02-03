@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3-Month Performance Chart</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            font-size: 12px;
+            background: white;
+            padding: 20px;
+        }
+
+        .chart-container {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .chart-title {
+            text-align: center;
+            font-size: 20px;
+            font-weight: 700;
+            color: #2E316E;
+            margin-bottom: 20px;
+        }
+
+        .chart {
+            position: relative;
+            width: 100%;
+            height: 752px;
+        }
+
+        .bar-container {
+            display: flex;
+            align-items: center;
+            height: 28px;
+            margin-bottom: 4px;
+            position: relative;
+        }
+
+        .company-label {
+            width: 160px;
+            text-align: right;
+            padding-right: 10px;
+            font-size: 11px;
+            color: #333;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .bar-area {
+            flex: 1;
+            height: 100%;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .zero-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: #999;
+        }
+
+        .bar {
+            height: 20px;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            border-radius: 2px;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .bar:hover {
+            opacity: 0.8;
+        }
+
+        .bar.positive {
+            left: 50%;
+            background: #2E316E;
+        }
+
+        .bar.negative {
+            right: 50%;
+            background: #c62828;
+        }
+
+        .tooltip {
+            position: fixed;
+            background: #2E316E;
+            color: white;
+            padding: 10px 14px;
+            border-radius: 6px;
+            font-size: 12px;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            min-width: 180px;
+        }
+
+        .tooltip.visible {
+            opacity: 1;
+        }
+
+        .tooltip-company {
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 6px;
+        }
+
+        .tooltip-row {
+            display: flex;
+            justify-content: space-between;
+            margin: 3px 0;
+        }
+
+        .tooltip-label {
+            color: #aaa;
+        }
+
+        .tooltip-value {
+            font-weight: 600;
+        }
+
+        .tooltip-value.positive {
+            color: #4caf50;
+        }
+
+        .tooltip-value.negative {
+            color: #ff6b6b;
+        }
+
+        .axis {
+            display: flex;
+            justify-content: space-between;
+            padding-left: 160px;
+            margin-top: 10px;
+            font-size: 10px;
+            color: #666;
+        }
+
+        .axis span {
+            text-align: center;
+            width: 60px;
+        }
+    </style>
+
+<!--[if gte mso 9]><xml>
+<mso:CustomDocumentProperties>
+<mso:_dlc_DocId msdt:dt="string">2WDKRCHZHSQ7-1645418348-13330</mso:_dlc_DocId>
+<mso:_dlc_DocIdItemGuid msdt:dt="string">b744c221-51e5-4b75-9c78-644153a07bbf</mso:_dlc_DocIdItemGuid>
+<mso:_dlc_DocIdUrl msdt:dt="string">https://akapenergy.sharepoint.com/sites/Z/_layouts/15/DocIdRedir.aspx?ID=2WDKRCHZHSQ7-1645418348-13330, 2WDKRCHZHSQ7-1645418348-13330</mso:_dlc_DocIdUrl>
+</mso:CustomDocumentProperties>
+</xml><![endif]-->
+</head>
+<body>
+    <div class="chart-container">
+        <div class="chart-title">3-Month Performance</div>
+        <div class="chart">
+            <div class="bar-container">
+                <div class="company-label">VVC Exploration</div>
+                <div class="bar-area">
+                    <div class="zero-line"></div>
+                    <div class="bar negative"
+                         style="width: 18.14516129032258%;"
+                         data-company="VVC Exploration"
+                         data-ticker="VVC.V"
+                         data-listing="Canada"
+                         data-value="-50.0">
+                    </div>
+                </div>
+            </div>
+            <div class="bar-container">
+                <div class="company-label">Helium Evolution</div>
+                <div class="bar-area">
+                    <div class="zero-line"></div>
+                    <div class="bar negative"
+                         style="width: 14.879032258064516%;"
+                         data-company="Helium Evolution"
+                         data-ticker="HEVI.V"
+                         data-listing="Canada"
+                         data-value="-41.0">
+                    </div>
+                </div>
+            </div>
+            <div class="bar-container">
+                <div class="company-label">Gold Hydrogen</div>
+                <div class="bar-area">
+                    <div class="zero-line"></div>
+                    <div class="bar negative"
+                         style="width: 9.798387096774194%;"
+                         data-company="Gold Hydrogen"
+                         data-ticker="GHY.AX"
+                         data-listing="Australia"
+                         data-value="-27.0">
+                    </div>
+                </div>
+            </div>
+            <div class="bar-container">
+                <div class="company-label">Desert Mountain Energy</div>
+                <div class="bar-area">
+                    <div class="zero-line"></div>
+                    <div class="bar negative"
+                         style="width: 7.620967741935483%;"
+                         data-company="Desert Mountain Energy"
+                         data-ticker="DME.V"
+                         data-listing="Canada"
+                         data-value="-21.0">
+                    </div>
+                </div>
+            </div>
+            <div class="bar-container">
+                <div class="company-label">Blue Star Helium</div>
+                <div class="bar-area">
+                    <div class="zero-line"></div>
+                    <div class="bar negative"
+                         style="width: 6.169354838709677%;"
+                         data-company="Blue Star Helium"
+                         data-ticker="BNL.AX"
+                         data-listing="Australia"
+                         data-value="-17.0">
+                    </div>
+                </div>
+            </div>
+            <div class="bar-container">
+                <div class="company-label">First Helium</div>
+                <div class="bar-area">
+                    <div class="zero-line"></div>
+                    <div class="bar negative"
+                         style="width: 5.080645161290322%;"
+                         data-company="First Helium"
+                         data-ticker="HELI.V"
+                         data-listing="Canada"
+                         data-value="-14.0">
+                    </div>
+                </div>
+            </div>
+            <div class="bar-container">
+                <div class="company-label">HyTerra</div>
+                <div class="bar-area">
+                    <div class="zero-line"></div>
+                    <div class="bar negative"
+                         style="width: 4.354838709677419%;"
+                         data-company="HyTerra"
+                         data-ticker="HYT.AX"
+                         data-listing="Australia"
+                         data-value="-12.0">
+                    </div>
+                </div>
+            </div>
+            <div class="bar-container">
+                <div class="company-label">D3 Energy</div>
+                <div class="bar-area">
+                    <div class="zero-line"></div>
+                    <div class="bar negative"
+                         style="width: 4.354838709677419%;"
+                         data-company="D3 Energy"
+                         data-ticker="D3E.AX"
+                         data-listing="Australia"
+                         data-value="-12.0">
+                    </div>
+                </div>
+            </div>
+            <div class="bar-container">
+                <div class="company-label">PetroSun</div>
+                <div class="bar-area">
+                    <div class="zero-line"></div>
+                    <div class="bar negative"
+                         style="width: 3.629032258064516%;"
+                         data-company="PetroSun"
+                         data-ticker="PSUD"
+                         data-listing="US"
+                         data-value="-10.0">
+                    </div>
+                </div>
+            </div>
+            <div class="bar-container">
+                <div class="company-label">Avanti Helium</div>
+                <div class="bar-area">
+                    <div class="zero-line"></div>
+                    <div class="bar negative"
+                         style="width: 2.540322580645161%;"
+                         data-company="Avanti Helium"
+                         data-ticker="AVN.V"
+                         data-listing="Canada"
+                         data-value="-7.0">
+                    </div>
+                </div>
+            </div>
+            <div class="bar-container">
+                <div class="company-label">US Energy Corp</div>
+                <div class="bar-area">
+                    <div class="zero-line"></div>
+                    <div class="bar negative"
+                         style="width: 2.540322580645161%;"
+                         data-company="US Energy Corp"
+                         data-ticker="USEG"
+                         data-listing="US"
+                         data-value="-7.0">
+                    </div>
+                </div>
+            </div>
+            <div class="bar-container">
+                <div class="company-label">Helix Exploration</div>
+                <div class="bar-area">
+                    <div class="zero-line"></div>
+                    <div class="bar negative"
+                         style="width: 1.814516129032258%;"
+                         data-company="Helix Exploration"
+                         data-ticker="HEX.L"
+                         data-listing="UK"
+                         data-value="-5.0">
+                    </div>
+                </div>
+            </div>
+            <div class="bar-container">
+                <div class="company-label">Mendell Helium</div>
+                <div class="bar-area">
+                    <div class="zero-line"></div>
+                    <div class="bar negative"
+                         style="width: 1.0887096774193548%;"
+                         data-company="Mendell Helium"
+                         data-ticker="MDH.AQ"
+                         data-listing="UK"
+                         data-value="-3.0">
+                    </div>
+                </div>
+            </div>
+            <div class="bar-container">
+                <div class="company-label">Noble Helium</div>
+                <div class="bar-area">
+                    <div class="zero-line"></div>
+                    <div class="bar negative"
+                         style="width: 1.0887096774193548%;"
+                         data-company="Noble Helium"
+                         data-ticker="NHE.AX"
+                         data-listing="Australia"
+                         data-value="-3.0">
+                    </div>
+                </div>
+            </div>
+            <div class="bar-container">
+                <div class="company-label">Uriel Gas</div>
+                <div class="bar-area">
+                    <div class="zero-line"></div>
+                    <div class="bar positive"
+                         style="width: 0.0%;"
+                         data-company="Uriel Gas"
+                         data-ticker="UGH.CN"
+                         data-listing="Canada"
+                         data-value="0.0">
+                    </div>
+                </div>
+            </div>
+            <div class="bar-container">
+                <div class="company-label">Helium One Global</div>
+                <div class="bar-area">
+                    <div class="zero-line"></div>
+                    <div class="bar positive"
+                         style="width: 1.814516129032258%;"
+                         data-company="Helium One Global"
+                         data-ticker="HE1.L"
+                         data-listing="UK"
+                         data-value="5.0">
+                    </div>
+                </div>
+            </div>
+            <div class="bar-container">
+                <div class="company-label">Grand Gulf Energy</div>
+                <div class="bar-area">
+                    <div class="zero-line"></div>
+                    <div class="bar positive"
+                         style="width: 18.14516129032258%;"
+                         data-company="Grand Gulf Energy"
+                         data-ticker="GGE.AX"
+                         data-listing="Australia"
+                         data-value="50.0">
+                    </div>
+                </div>
+            </div>
+            <div class="bar-container">
+                <div class="company-label">Quantum Helium</div>
+                <div class="bar-area">
+                    <div class="zero-line"></div>
+                    <div class="bar positive"
+                         style="width: 18.870967741935484%;"
+                         data-company="Quantum Helium"
+                         data-ticker="QHE.L"
+                         data-listing="UK"
+                         data-value="52.0">
+                    </div>
+                </div>
+            </div>
+            <div class="bar-container">
+                <div class="company-label">80 Mile</div>
+                <div class="bar-area">
+                    <div class="zero-line"></div>
+                    <div class="bar positive"
+                         style="width: 21.411290322580648%;"
+                         data-company="80 Mile"
+                         data-ticker="80M.L"
+                         data-listing="UK"
+                         data-value="59.0">
+                    </div>
+                </div>
+            </div>
+            <div class="bar-container">
+                <div class="company-label">Georgina Energy</div>
+                <div class="bar-area">
+                    <div class="zero-line"></div>
+                    <div class="bar positive"
+                         style="width: 29.758064516129032%;"
+                         data-company="Georgina Energy"
+                         data-ticker="GEX.L"
+                         data-listing="UK"
+                         data-value="82.0">
+                    </div>
+                </div>
+            </div>
+            <div class="bar-container">
+                <div class="company-label">Pulsar Helium</div>
+                <div class="bar-area">
+                    <div class="zero-line"></div>
+                    <div class="bar positive"
+                         style="width: 45.0%;"
+                         data-company="Pulsar Helium"
+                         data-ticker="PLSR.L"
+                         data-listing="Canada"
+                         data-value="124.0">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="axis">
+            <span>-124.0%</span>
+            <span>-62.0%</span>
+            <span>0%</span>
+            <span>+62.0%</span>
+            <span>+124.0%</span>
+        </div>
+    </div>
+
+    <div class="tooltip" id="tooltip">
+        <div class="tooltip-company" id="tooltip-company"></div>
+        <div class="tooltip-row">
+            <span class="tooltip-label">Ticker:</span>
+            <span class="tooltip-value" id="tooltip-ticker"></span>
+        </div>
+        <div class="tooltip-row">
+            <span class="tooltip-label">Listing:</span>
+            <span class="tooltip-value" id="tooltip-listing"></span>
+        </div>
+        <div class="tooltip-row">
+            <span class="tooltip-label">3M Performance:</span>
+            <span class="tooltip-value" id="tooltip-value"></span>
+        </div>
+    </div>
+
+    <script>
+        const tooltip = document.getElementById('tooltip');
+        const tooltipCompany = document.getElementById('tooltip-company');
+        const tooltipTicker = document.getElementById('tooltip-ticker');
+        const tooltipListing = document.getElementById('tooltip-listing');
+        const tooltipValue = document.getElementById('tooltip-value');
+
+        document.querySelectorAll('.bar').forEach(bar => {
+            bar.addEventListener('mouseenter', (e) => {
+                const company = bar.dataset.company;
+                const ticker = bar.dataset.ticker;
+                const listing = bar.dataset.listing;
+                const value = parseInt(bar.dataset.value);
+
+                tooltipCompany.textContent = company;
+                tooltipTicker.textContent = ticker;
+                tooltipListing.textContent = listing;
+
+                const sign = value >= 0 ? '+' : '';
+                tooltipValue.textContent = sign + value + '%';
+                tooltipValue.className = 'tooltip-value ' + (value >= 0 ? 'positive' : 'negative');
+
+                tooltip.classList.add('visible');
+            });
+
+            bar.addEventListener('mousemove', (e) => {
+                tooltip.style.left = (e.clientX + 15) + 'px';
+                tooltip.style.top = (e.clientY - 10) + 'px';
+            });
+
+            bar.addEventListener('mouseleave', () => {
+                tooltip.classList.remove('visible');
+            });
+        });
+    </script>
+</body>
+</html>
