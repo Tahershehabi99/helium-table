@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -108,14 +108,6 @@
             color: #c62828;
         }
     </style>
-
-<!--[if gte mso 9]><xml>
-<mso:CustomDocumentProperties>
-<mso:_dlc_DocId msdt:dt="string">2WDKRCHZHSQ7-1645418348-13330</mso:_dlc_DocId>
-<mso:_dlc_DocIdItemGuid msdt:dt="string">b744c221-51e5-4b75-9c78-644153a07bbf</mso:_dlc_DocIdItemGuid>
-<mso:_dlc_DocIdUrl msdt:dt="string">https://akapenergy.sharepoint.com/sites/Z/_layouts/15/DocIdRedir.aspx?ID=2WDKRCHZHSQ7-1645418348-13330, 2WDKRCHZHSQ7-1645418348-13330</mso:_dlc_DocIdUrl>
-</mso:CustomDocumentProperties>
-</xml><![endif]-->
 </head>
 <body>
     <div class="chart-wrapper">
@@ -171,14 +163,14 @@
                   data-company="Noble Helium" data-ticker="NHE.AX"
                   data-listing="Australia" data-value="-3.0"/>
             <rect class="bar" x="476.0" y="226.66666666666666" width="30" height="5.000000000000028"
-                  data-company="US Energy Corp" data-ticker="USEG"
-                  data-listing="US" data-value="-3.0"/>
-            <rect class="bar" x="518.0" y="226.66666666666666" width="30" height="5.000000000000028"
                   data-company="Mendell Helium" data-ticker="MDH.AQ"
                   data-listing="UK" data-value="-3.0"/>
-            <rect class="bar" x="560.0" y="226.66666666666666" width="30" height="3.3333333333333144"
+            <rect class="bar" x="518.0" y="226.66666666666666" width="30" height="3.3333333333333144"
                   data-company="Avanti Helium" data-ticker="AVN.V"
                   data-listing="Canada" data-value="-2.0"/>
+            <rect class="bar" x="560.0" y="226.66666666666666" width="30" height="1.6666666666666572"
+                  data-company="US Energy Corp" data-ticker="USEG"
+                  data-listing="US" data-value="-1.0"/>
             <rect class="bar" x="602.0" y="226.66666666666666" width="30" height="0.0"
                   data-company="Uriel Gas" data-ticker="UGH.CN"
                   data-listing="Canada" data-value="0.0"/>
@@ -213,9 +205,9 @@
             <text class="x-label" x="365.0" y="320" text-anchor="end" transform="rotate(-45, 365.0, 320)">D3 Energy</text>
             <text class="x-label" x="407.0" y="320" text-anchor="end" transform="rotate(-45, 407.0, 320)">Helix Exploration</text>
             <text class="x-label" x="449.0" y="320" text-anchor="end" transform="rotate(-45, 449.0, 320)">Noble Helium</text>
-            <text class="x-label" x="491.0" y="320" text-anchor="end" transform="rotate(-45, 491.0, 320)">US Energy</text>
-            <text class="x-label" x="533.0" y="320" text-anchor="end" transform="rotate(-45, 533.0, 320)">Mendell Helium</text>
-            <text class="x-label" x="575.0" y="320" text-anchor="end" transform="rotate(-45, 575.0, 320)">Avanti Helium</text>
+            <text class="x-label" x="491.0" y="320" text-anchor="end" transform="rotate(-45, 491.0, 320)">Mendell Helium</text>
+            <text class="x-label" x="533.0" y="320" text-anchor="end" transform="rotate(-45, 533.0, 320)">Avanti Helium</text>
+            <text class="x-label" x="575.0" y="320" text-anchor="end" transform="rotate(-45, 575.0, 320)">US Energy</text>
             <text class="x-label" x="617.0" y="320" text-anchor="end" transform="rotate(-45, 617.0, 320)">Uriel Gas</text>
             <text class="x-label" x="659.0" y="320" text-anchor="end" transform="rotate(-45, 659.0, 320)">Helium One</text>
             <text class="x-label" x="701.0" y="320" text-anchor="end" transform="rotate(-45, 701.0, 320)">PetroSun</text>
@@ -269,7 +261,15 @@
             });
 
             bar.addEventListener('mousemove', (e) => {
-                tooltip.style.left = (e.clientX + 15) + 'px';
+                const tooltipWidth = 220;
+                const windowWidth = window.innerWidth;
+
+                // If tooltip would go off right edge, show it on the left of cursor
+                if (e.clientX + tooltipWidth + 20 > windowWidth) {
+                    tooltip.style.left = (e.clientX - tooltipWidth - 15) + 'px';
+                } else {
+                    tooltip.style.left = (e.clientX + 15) + 'px';
+                }
                 tooltip.style.top = (e.clientY - 10) + 'px';
             });
 
