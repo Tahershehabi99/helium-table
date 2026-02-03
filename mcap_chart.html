@@ -24,9 +24,10 @@
         .legend {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px 15px;
+            gap: 8px 12px;
             margin-top: 15px;
-            padding: 0 10px 10px 60px;
+            padding: 0 20px 10px 60px;
+            max-width: 940px;
         }
         .legend-item {
             display: flex;
@@ -308,8 +309,8 @@
             tooltipDate.textContent = formattedDate;
             tooltipMcap.textContent = mcap.toFixed(1) + 'M USD';
 
-            // Position tooltip
-            const tooltipWidth = 200;
+            // Position tooltip - flip to left side if near right edge
+            const tooltipWidth = 220;
             const windowWidth = window.innerWidth;
 
             if (e.clientX + tooltipWidth + 20 > windowWidth) {
