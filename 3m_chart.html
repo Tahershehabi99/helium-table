@@ -16,52 +16,46 @@
             font-family: 'Poppins', sans-serif;
             font-size: 10px;
             background: white;
-            padding: 20px;
+            padding: 10px;
         }
 
-        .chart-container {
+        .chart-wrapper {
             width: 100%;
+            max-width: 100%;
             overflow-x: auto;
         }
 
-        .chart {
+        .chart-container {
+            display: flex;
+            flex-direction: column;
+            min-width: fit-content;
+            padding: 10px 20px 10px 50px;
+        }
+
+        .plot-area {
             position: relative;
-            width: 1130px;
-            height: 510px;
-            margin: 0 auto;
-            padding-left: 50px;
+            height: 300px;
+            display: flex;
+            align-items: flex-end;
+            border-left: 1px solid #ccc;
         }
 
         .y-axis {
             position: absolute;
-            left: 0;
-            top: 20px;
-            width: 50px;
-            height: 350px;
+            left: -50px;
+            top: 0;
+            bottom: 0;
+            width: 45px;
         }
 
         .y-label {
             position: absolute;
-            right: 10px;
+            right: 5px;
             font-size: 10px;
             color: #666;
-            transform: translateY(-50%);
-        }
-
-        .plot-area {
-            position: absolute;
-            left: 50px;
-            top: 20px;
-            width: 1050px;
-            height: 350px;
-        }
-
-        .zero-line {
-            position: absolute;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: #999;
+            transform: translateY(50%);
+            text-align: right;
+            width: 40px;
         }
 
         .grid-line {
@@ -70,31 +64,66 @@
             right: 0;
             height: 1px;
             background: #eee;
+            pointer-events: none;
+        }
+
+        .zero-line {
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: #999;
+            pointer-events: none;
+        }
+
+        .bars-container {
+            display: flex;
+            align-items: flex-end;
+            height: 100%;
+            position: relative;
+            gap: 8px;
+            padding-right: 20px;
+        }
+
+        .bar-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 32px;
+            flex-shrink: 0;
         }
 
         .bar {
-            position: absolute;
-            width: 35px;
+            width: 100%;
             background: #2E316E;
             cursor: pointer;
             transition: opacity 0.2s;
+            position: relative;
         }
 
         .bar:hover {
             opacity: 0.8;
         }
 
-        .x-labels-container {
-            position: absolute;
-            left: 50px;
-            top: 385px;
-            width: 1050px;
-            height: 120px;
+        .x-labels-area {
+            display: flex;
+            gap: 8px;
+            padding-left: 0px;
+            padding-top: 8px;
+            padding-right: 20px;
+        }
+
+        .x-label-wrapper {
+            width: 32px;
+            flex-shrink: 0;
+            height: 100px;
+            position: relative;
         }
 
         .x-label {
             position: absolute;
             top: 0;
+            left: 50%;
             font-size: 10px;
             color: #333;
             transform: rotate(-45deg);
@@ -160,201 +189,287 @@
 </xml><![endif]-->
 </head>
 <body>
-    <div class="chart-container">
-        <div class="chart">
-            <div class="y-axis">
-                <div class="y-label" style="top: 350.0px;">-50%</div>
-                <div class="y-label" style="top: 311.1111111111111px;">-30%</div>
-                <div class="y-label" style="top: 272.2222222222223px;">-10%</div>
-                <div class="y-label" style="top: 233.3333333333333px;">+10%</div>
-                <div class="y-label" style="top: 194.44444444444446px;">+30%</div>
-                <div class="y-label" style="top: 155.55555555555554px;">+50%</div>
-                <div class="y-label" style="top: 116.66666666666664px;">+70%</div>
-                <div class="y-label" style="top: 77.77777777777777px;">+90%</div>
-                <div class="y-label" style="top: 38.888888888888886px;">+110%</div>
-                <div class="y-label" style="top: 0.0px;">+130%</div>
+    <div class="chart-wrapper">
+        <div class="chart-container">
+            <div class="plot-area" id="plotArea">
+                <div class="y-axis">
+                    <div class="y-label" style="bottom: 0.0px;">-50%</div>
+                    <div class="y-label" style="bottom: 33.33333333333333px;">-30%</div>
+                    <div class="y-label" style="bottom: 66.66666666666666px;">-10%</div>
+                    <div class="y-label" style="bottom: 99.99999999999997px;">+10%</div>
+                    <div class="y-label" style="bottom: 133.33333333333331px;">+30%</div>
+                    <div class="y-label" style="bottom: 166.66666666666669px;">+50%</div>
+                    <div class="y-label" style="bottom: 199.99999999999994px;">+70%</div>
+                    <div class="y-label" style="bottom: 233.33333333333337px;">+90%</div>
+                    <div class="y-label" style="bottom: 266.66666666666663px;">+110%</div>
+                    <div class="y-label" style="bottom: 300.0px;">+130%</div>
+                </div>
+                <div class="grid-line" style="bottom: 0.0px;"></div>
+                <div class="grid-line" style="bottom: 33.33333333333333px;"></div>
+                <div class="grid-line" style="bottom: 66.66666666666666px;"></div>
+                <div class="grid-line" style="bottom: 99.99999999999997px;"></div>
+                <div class="grid-line" style="bottom: 133.33333333333331px;"></div>
+                <div class="grid-line" style="bottom: 166.66666666666669px;"></div>
+                <div class="grid-line" style="bottom: 199.99999999999994px;"></div>
+                <div class="grid-line" style="bottom: 233.33333333333337px;"></div>
+                <div class="grid-line" style="bottom: 266.66666666666663px;"></div>
+                <div class="grid-line" style="bottom: 300.0px;"></div>
+                <div class="bars-container">
+                    <div class="bar-wrapper">
+                        <div class="bar"
+                             style="height: 83.33333333333334px; margin-bottom: 0.0px;"
+                             data-company="VVC Exploration"
+                             data-ticker="VVC.V"
+                             data-listing="Canada"
+                             data-value="-50.0">
+                        </div>
+                    </div>
+                    <div class="bar-wrapper">
+                        <div class="bar"
+                             style="height: 63.333333333333336px; margin-bottom: 20.000000000000007px;"
+                             data-company="Helium Evolution"
+                             data-ticker="HEVI.V"
+                             data-listing="Canada"
+                             data-value="-38.0">
+                        </div>
+                    </div>
+                    <div class="bar-wrapper">
+                        <div class="bar"
+                             style="height: 45.0px; margin-bottom: 38.33333333333334px;"
+                             data-company="Gold Hydrogen"
+                             data-ticker="GHY.AX"
+                             data-listing="Australia"
+                             data-value="-27.0">
+                        </div>
+                    </div>
+                    <div class="bar-wrapper">
+                        <div class="bar"
+                             style="height: 40.0px; margin-bottom: 43.33333333333334px;"
+                             data-company="Desert Mountain Energy"
+                             data-ticker="DME.V"
+                             data-listing="Canada"
+                             data-value="-24.0">
+                        </div>
+                    </div>
+                    <div class="bar-wrapper">
+                        <div class="bar"
+                             style="height: 28.333333333333332px; margin-bottom: 55.000000000000014px;"
+                             data-company="Blue Star Helium"
+                             data-ticker="BNL.AX"
+                             data-listing="Australia"
+                             data-value="-17.0">
+                        </div>
+                    </div>
+                    <div class="bar-wrapper">
+                        <div class="bar"
+                             style="height: 23.333333333333332px; margin-bottom: 60.000000000000014px;"
+                             data-company="First Helium"
+                             data-ticker="HELI.V"
+                             data-listing="Canada"
+                             data-value="-14.0">
+                        </div>
+                    </div>
+                    <div class="bar-wrapper">
+                        <div class="bar"
+                             style="height: 20.0px; margin-bottom: 63.33333333333334px;"
+                             data-company="HyTerra"
+                             data-ticker="HYT.AX"
+                             data-listing="Australia"
+                             data-value="-12.0">
+                        </div>
+                    </div>
+                    <div class="bar-wrapper">
+                        <div class="bar"
+                             style="height: 20.0px; margin-bottom: 63.33333333333334px;"
+                             data-company="D3 Energy"
+                             data-ticker="D3E.AX"
+                             data-listing="Australia"
+                             data-value="-12.0">
+                        </div>
+                    </div>
+                    <div class="bar-wrapper">
+                        <div class="bar"
+                             style="height: 8.333333333333332px; margin-bottom: 75.00000000000001px;"
+                             data-company="Helix Exploration"
+                             data-ticker="HEX.L"
+                             data-listing="UK"
+                             data-value="-5.0">
+                        </div>
+                    </div>
+                    <div class="bar-wrapper">
+                        <div class="bar"
+                             style="height: 8.333333333333332px; margin-bottom: 75.00000000000001px;"
+                             data-company="Avanti Helium"
+                             data-ticker="AVN.V"
+                             data-listing="Canada"
+                             data-value="-5.0">
+                        </div>
+                    </div>
+                    <div class="bar-wrapper">
+                        <div class="bar"
+                             style="height: 6.666666666666667px; margin-bottom: 76.66666666666667px;"
+                             data-company="US Energy Corp"
+                             data-ticker="USEG"
+                             data-listing="US"
+                             data-value="-4.0">
+                        </div>
+                    </div>
+                    <div class="bar-wrapper">
+                        <div class="bar"
+                             style="height: 5.0px; margin-bottom: 78.33333333333334px;"
+                             data-company="Mendell Helium"
+                             data-ticker="MDH.AQ"
+                             data-listing="UK"
+                             data-value="-3.0">
+                        </div>
+                    </div>
+                    <div class="bar-wrapper">
+                        <div class="bar"
+                             style="height: 5.0px; margin-bottom: 78.33333333333334px;"
+                             data-company="Noble Helium"
+                             data-ticker="NHE.AX"
+                             data-listing="Australia"
+                             data-value="-3.0">
+                        </div>
+                    </div>
+                    <div class="bar-wrapper">
+                        <div class="bar"
+                             style="height: 0.0px; margin-bottom: 83.33333333333334px;"
+                             data-company="Uriel Gas"
+                             data-ticker="UGH.CN"
+                             data-listing="Canada"
+                             data-value="0.0">
+                        </div>
+                    </div>
+                    <div class="bar-wrapper">
+                        <div class="bar"
+                             style="height: 8.333333333333332px; margin-bottom: 83.33333333333334px;"
+                             data-company="Helium One Global"
+                             data-ticker="HE1.L"
+                             data-listing="UK"
+                             data-value="5.0">
+                        </div>
+                    </div>
+                    <div class="bar-wrapper">
+                        <div class="bar"
+                             style="height: 20.0px; margin-bottom: 83.33333333333334px;"
+                             data-company="PetroSun"
+                             data-ticker="PSUD"
+                             data-listing="US"
+                             data-value="12.0">
+                        </div>
+                    </div>
+                    <div class="bar-wrapper">
+                        <div class="bar"
+                             style="height: 83.33333333333334px; margin-bottom: 83.33333333333334px;"
+                             data-company="Grand Gulf Energy"
+                             data-ticker="GGE.AX"
+                             data-listing="Australia"
+                             data-value="50.0">
+                        </div>
+                    </div>
+                    <div class="bar-wrapper">
+                        <div class="bar"
+                             style="height: 86.66666666666666px; margin-bottom: 83.33333333333334px;"
+                             data-company="Quantum Helium"
+                             data-ticker="QHE.L"
+                             data-listing="UK"
+                             data-value="52.0">
+                        </div>
+                    </div>
+                    <div class="bar-wrapper">
+                        <div class="bar"
+                             style="height: 98.33333333333333px; margin-bottom: 83.33333333333334px;"
+                             data-company="80 Mile"
+                             data-ticker="80M.L"
+                             data-listing="UK"
+                             data-value="59.0">
+                        </div>
+                    </div>
+                    <div class="bar-wrapper">
+                        <div class="bar"
+                             style="height: 136.66666666666666px; margin-bottom: 83.33333333333334px;"
+                             data-company="Georgina Energy"
+                             data-ticker="GEX.L"
+                             data-listing="UK"
+                             data-value="82.0">
+                        </div>
+                    </div>
+                    <div class="bar-wrapper">
+                        <div class="bar"
+                             style="height: 206.66666666666666px; margin-bottom: 83.33333333333334px;"
+                             data-company="Pulsar Helium"
+                             data-ticker="PLSR.L"
+                             data-listing="Canada"
+                             data-value="124.0">
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="plot-area">
-                <div class="grid-line" style="top: 350.0px;"></div>
-                <div class="grid-line" style="top: 311.1111111111111px;"></div>
-                <div class="grid-line" style="top: 272.2222222222223px;"></div>
-                <div class="grid-line" style="top: 233.3333333333333px;"></div>
-                <div class="grid-line" style="top: 194.44444444444446px;"></div>
-                <div class="grid-line" style="top: 155.55555555555554px;"></div>
-                <div class="grid-line" style="top: 116.66666666666664px;"></div>
-                <div class="grid-line" style="top: 77.77777777777777px;"></div>
-                <div class="grid-line" style="top: 38.888888888888886px;"></div>
-                <div class="grid-line" style="top: 0.0px;"></div>
-                <div class="bar"
-                     style="left: 0px; top: 252.77777777777777px; height: 97.22222222222223px;"
-                     data-company="VVC Exploration"
-                     data-ticker="VVC.V"
-                     data-listing="Canada"
-                     data-value="-50.0">
+            <div class="x-labels-area">
+                <div class="x-label-wrapper">
+                    <div class="x-label">VVC Exploration</div>
                 </div>
-                <div class="bar"
-                     style="left: 50px; top: 252.77777777777777px; height: 79.72222222222223px;"
-                     data-company="Helium Evolution"
-                     data-ticker="HEVI.V"
-                     data-listing="Canada"
-                     data-value="-41.0">
+                <div class="x-label-wrapper">
+                    <div class="x-label">Helium Evolution</div>
                 </div>
-                <div class="bar"
-                     style="left: 100px; top: 252.77777777777777px; height: 52.5px;"
-                     data-company="Gold Hydrogen"
-                     data-ticker="GHY.AX"
-                     data-listing="Australia"
-                     data-value="-27.0">
+                <div class="x-label-wrapper">
+                    <div class="x-label">Gold Hydrogen</div>
                 </div>
-                <div class="bar"
-                     style="left: 150px; top: 252.77777777777777px; height: 48.61111111111114px;"
-                     data-company="Desert Mountain Energy"
-                     data-ticker="DME.V"
-                     data-listing="Canada"
-                     data-value="-25.0">
+                <div class="x-label-wrapper">
+                    <div class="x-label">Desert Mountain Energy</div>
                 </div>
-                <div class="bar"
-                     style="left: 200px; top: 252.77777777777777px; height: 33.05555555555554px;"
-                     data-company="Blue Star Helium"
-                     data-ticker="BNL.AX"
-                     data-listing="Australia"
-                     data-value="-17.0">
+                <div class="x-label-wrapper">
+                    <div class="x-label">Blue Star Helium</div>
                 </div>
-                <div class="bar"
-                     style="left: 250px; top: 252.77777777777777px; height: 27.22222222222223px;"
-                     data-company="First Helium"
-                     data-ticker="HELI.V"
-                     data-listing="Canada"
-                     data-value="-14.0">
+                <div class="x-label-wrapper">
+                    <div class="x-label">First Helium</div>
                 </div>
-                <div class="bar"
-                     style="left: 300px; top: 252.77777777777777px; height: 23.333333333333314px;"
-                     data-company="HyTerra"
-                     data-ticker="HYT.AX"
-                     data-listing="Australia"
-                     data-value="-12.0">
+                <div class="x-label-wrapper">
+                    <div class="x-label">HyTerra</div>
                 </div>
-                <div class="bar"
-                     style="left: 350px; top: 252.77777777777777px; height: 23.333333333333314px;"
-                     data-company="D3 Energy"
-                     data-ticker="D3E.AX"
-                     data-listing="Australia"
-                     data-value="-12.0">
+                <div class="x-label-wrapper">
+                    <div class="x-label">D3 Energy</div>
                 </div>
-                <div class="bar"
-                     style="left: 400px; top: 252.77777777777777px; height: 19.444444444444457px;"
-                     data-company="PetroSun"
-                     data-ticker="PSUD"
-                     data-listing="US"
-                     data-value="-10.0">
+                <div class="x-label-wrapper">
+                    <div class="x-label">Helix Exploration</div>
                 </div>
-                <div class="bar"
-                     style="left: 450px; top: 252.77777777777777px; height: 17.5px;"
-                     data-company="Avanti Helium"
-                     data-ticker="AVN.V"
-                     data-listing="Canada"
-                     data-value="-9.0">
+                <div class="x-label-wrapper">
+                    <div class="x-label">Avanti Helium</div>
                 </div>
-                <div class="bar"
-                     style="left: 500px; top: 252.77777777777777px; height: 13.611111111111086px;"
-                     data-company="US Energy Corp"
-                     data-ticker="USEG"
-                     data-listing="US"
-                     data-value="-7.0">
+                <div class="x-label-wrapper">
+                    <div class="x-label">US Energy Corp</div>
                 </div>
-                <div class="bar"
-                     style="left: 550px; top: 252.77777777777777px; height: 9.722222222222229px;"
-                     data-company="Helix Exploration"
-                     data-ticker="HEX.L"
-                     data-listing="UK"
-                     data-value="-5.0">
+                <div class="x-label-wrapper">
+                    <div class="x-label">Mendell Helium</div>
                 </div>
-                <div class="bar"
-                     style="left: 600px; top: 252.77777777777777px; height: 5.833333333333371px;"
-                     data-company="Mendell Helium"
-                     data-ticker="MDH.AQ"
-                     data-listing="UK"
-                     data-value="-3.0">
+                <div class="x-label-wrapper">
+                    <div class="x-label">Noble Helium</div>
                 </div>
-                <div class="bar"
-                     style="left: 650px; top: 252.77777777777777px; height: 5.833333333333371px;"
-                     data-company="Noble Helium"
-                     data-ticker="NHE.AX"
-                     data-listing="Australia"
-                     data-value="-3.0">
+                <div class="x-label-wrapper">
+                    <div class="x-label">Uriel Gas</div>
                 </div>
-                <div class="bar"
-                     style="left: 700px; top: 252.77777777777777px; height: 0.0px;"
-                     data-company="Uriel Gas"
-                     data-ticker="UGH.CN"
-                     data-listing="Canada"
-                     data-value="0.0">
+                <div class="x-label-wrapper">
+                    <div class="x-label">Helium One Global</div>
                 </div>
-                <div class="bar"
-                     style="left: 750px; top: 243.05555555555554px; height: 9.722222222222229px;"
-                     data-company="Helium One Global"
-                     data-ticker="HE1.L"
-                     data-listing="UK"
-                     data-value="5.0">
+                <div class="x-label-wrapper">
+                    <div class="x-label">PetroSun</div>
                 </div>
-                <div class="bar"
-                     style="left: 800px; top: 155.55555555555554px; height: 97.22222222222223px;"
-                     data-company="Grand Gulf Energy"
-                     data-ticker="GGE.AX"
-                     data-listing="Australia"
-                     data-value="50.0">
+                <div class="x-label-wrapper">
+                    <div class="x-label">Grand Gulf Energy</div>
                 </div>
-                <div class="bar"
-                     style="left: 850px; top: 151.66666666666669px; height: 101.11111111111109px;"
-                     data-company="Quantum Helium"
-                     data-ticker="QHE.L"
-                     data-listing="UK"
-                     data-value="52.0">
+                <div class="x-label-wrapper">
+                    <div class="x-label">Quantum Helium</div>
                 </div>
-                <div class="bar"
-                     style="left: 900px; top: 138.05555555555554px; height: 114.72222222222223px;"
-                     data-company="80 Mile"
-                     data-ticker="80M.L"
-                     data-listing="UK"
-                     data-value="59.0">
+                <div class="x-label-wrapper">
+                    <div class="x-label">80 Mile</div>
                 </div>
-                <div class="bar"
-                     style="left: 950px; top: 93.33333333333333px; height: 159.44444444444446px;"
-                     data-company="Georgina Energy"
-                     data-ticker="GEX.L"
-                     data-listing="UK"
-                     data-value="82.0">
+                <div class="x-label-wrapper">
+                    <div class="x-label">Georgina Energy</div>
                 </div>
-                <div class="bar"
-                     style="left: 1000px; top: 11.666666666666666px; height: 241.11111111111111px;"
-                     data-company="Pulsar Helium"
-                     data-ticker="PLSR.L"
-                     data-listing="Canada"
-                     data-value="124.0">
+                <div class="x-label-wrapper">
+                    <div class="x-label">Pulsar Helium</div>
                 </div>
-            </div>
-            <div class="x-labels-container">
-                <div class="x-label" style="left: 17.5px;">VVC Exploration</div>
-                <div class="x-label" style="left: 67.5px;">Helium Evolution</div>
-                <div class="x-label" style="left: 117.5px;">Gold Hydrogen</div>
-                <div class="x-label" style="left: 167.5px;">Desert Mountain Energy</div>
-                <div class="x-label" style="left: 217.5px;">Blue Star Helium</div>
-                <div class="x-label" style="left: 267.5px;">First Helium</div>
-                <div class="x-label" style="left: 317.5px;">HyTerra</div>
-                <div class="x-label" style="left: 367.5px;">D3 Energy</div>
-                <div class="x-label" style="left: 417.5px;">PetroSun</div>
-                <div class="x-label" style="left: 467.5px;">Avanti Helium</div>
-                <div class="x-label" style="left: 517.5px;">US Energy Corp</div>
-                <div class="x-label" style="left: 567.5px;">Helix Exploration</div>
-                <div class="x-label" style="left: 617.5px;">Mendell Helium</div>
-                <div class="x-label" style="left: 667.5px;">Noble Helium</div>
-                <div class="x-label" style="left: 717.5px;">Uriel Gas</div>
-                <div class="x-label" style="left: 767.5px;">Helium One Global</div>
-                <div class="x-label" style="left: 817.5px;">Grand Gulf Energy</div>
-                <div class="x-label" style="left: 867.5px;">Quantum Helium</div>
-                <div class="x-label" style="left: 917.5px;">80 Mile</div>
-                <div class="x-label" style="left: 967.5px;">Georgina Energy</div>
-                <div class="x-label" style="left: 1017.5px;">Pulsar Helium</div>
             </div>
         </div>
     </div>
