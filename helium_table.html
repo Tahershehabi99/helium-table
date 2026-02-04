@@ -121,21 +121,18 @@
             font-style: italic;
         }
 
-        /* Column widths - fixed widths to prevent shifting on hover */
-        table {
-            table-layout: fixed;
-        }
-        th:nth-child(1), td:nth-child(1) { width: 140px; } /* Company */
-        th:nth-child(2), td:nth-child(2) { width: 60px; }  /* Listing */
-        th:nth-child(3), td:nth-child(3) { width: 85px; }  /* Operations */
-        th:nth-child(4), td:nth-child(4) { width: 70px; }  /* Market Cap */
-        th:nth-child(5), td:nth-child(5) { width: 65px; }  /* Net Debt */
-        th:nth-child(6), td:nth-child(6) { width: 55px; }  /* YTD */
-        th:nth-child(7), td:nth-child(7) { width: 55px; }  /* 1M */
-        th:nth-child(8), td:nth-child(8) { width: 55px; }  /* 3M */
-        th:nth-child(9), td:nth-child(9) { width: 55px; }  /* 6M */
-        th:nth-child(10), td:nth-child(10) { width: 55px; } /* 1Y */
-        th:nth-child(11), td:nth-child(11) { width: 55px; } /* 2Y */
+        /* Column widths */
+        th:nth-child(1), td:nth-child(1) { min-width: 130px; } /* Company */
+        th:nth-child(2), td:nth-child(2) { min-width: 60px; }  /* Listing */
+        th:nth-child(3), td:nth-child(3) { min-width: 80px; }  /* Operations */
+        th:nth-child(4), td:nth-child(4) { min-width: 70px; }  /* Market Cap */
+        th:nth-child(5), td:nth-child(5) { min-width: 65px; }  /* Net Debt */
+        th:nth-child(6), td:nth-child(6) { min-width: 50px; }  /* YTD */
+        th:nth-child(7), td:nth-child(7) { min-width: 50px; }  /* 1M */
+        th:nth-child(8), td:nth-child(8) { min-width: 50px; }  /* 3M */
+        th:nth-child(9), td:nth-child(9) { min-width: 50px; }  /* 6M */
+        th:nth-child(10), td:nth-child(10) { min-width: 50px; } /* 1Y */
+        th:nth-child(11), td:nth-child(11) { min-width: 50px; } /* 2Y */
 
     </style>
 
@@ -175,13 +172,13 @@
                     <td>80 Mile</td>
                     <td>UK</td>
                     <td>Finland</td>
-                    <td>74.9</td>
+                    <td>74.4</td>
                     <td><span class="na">n/a</span></td>
-                    <td class="positive">113%</td>
-                    <td class="positive">113%</td>
-                    <td class="positive">58%</td>
-                    <td class="positive">343%</td>
-                    <td class="positive">300%</td>
+                    <td class="positive">112%</td>
+                    <td class="positive">112%</td>
+                    <td class="positive">57%</td>
+                    <td class="positive">341%</td>
+                    <td class="positive">297%</td>
                     <td class="na">nan</td>
                 </tr>
                 <tr>
@@ -214,7 +211,7 @@
                     <td>D3 Energy</td>
                     <td>Australia</td>
                     <td>South Africa</td>
-                    <td>34.8</td>
+                    <td>34.7</td>
                     <td>(6.0)</td>
                     <td class="negative">-1%</td>
                     <td class="positive">4%</td>
@@ -253,13 +250,13 @@
                     <td>Georgina Energy</td>
                     <td>UK</td>
                     <td>Australia</td>
-                    <td>13.8</td>
+                    <td>13.9</td>
                     <td>0.8</td>
-                    <td class="positive">198%</td>
-                    <td class="positive">209%</td>
-                    <td class="positive">58%</td>
-                    <td class="positive">50%</td>
-                    <td class="positive">62%</td>
+                    <td class="positive">201%</td>
+                    <td class="positive">211%</td>
+                    <td class="positive">59%</td>
+                    <td class="positive">52%</td>
+                    <td class="positive">64%</td>
                     <td class="na">nan</td>
                 </tr>
                 <tr>
@@ -305,27 +302,27 @@
                     <td>Helium One Global</td>
                     <td>UK</td>
                     <td>Tanzania</td>
-                    <td>55.6</td>
+                    <td>54.4</td>
                     <td>(3.4)</td>
-                    <td class="positive">3%</td>
-                    <td class="positive">8%</td>
-                    <td class="positive">12%</td>
-                    <td class="negative">-29%</td>
-                    <td class="negative">-48%</td>
-                    <td class="negative">-84%</td>
+                    <td class="positive">1%</td>
+                    <td class="positive">6%</td>
+                    <td class="positive">10%</td>
+                    <td class="negative">-31%</td>
+                    <td class="negative">-49%</td>
+                    <td class="negative">-85%</td>
                 </tr>
                 <tr>
                     <td>Helix Exploration</td>
                     <td>UK</td>
                     <td>US</td>
-                    <td>67.8</td>
+                    <td>68.6</td>
                     <td>(6.2)</td>
-                    <td class="negative">-9%</td>
-                    <td class="negative">-9%</td>
-                    <td class="negative">-5%</td>
+                    <td class="negative">-7%</td>
                     <td class="negative">-8%</td>
-                    <td class="positive">77%</td>
-                    <td class="positive">155%</td>
+                    <td class="negative">-4%</td>
+                    <td class="negative">-6%</td>
+                    <td class="positive">80%</td>
+                    <td class="positive">159%</td>
                 </tr>
                 <tr>
                     <td>HyTerra</td>
@@ -357,7 +354,7 @@
                     <td>Noble Helium</td>
                     <td>Australia</td>
                     <td>Tanzania</td>
-                    <td>13.9</td>
+                    <td>14.1</td>
                     <td>1.8</td>
                     <td class="negative">-8%</td>
                     <td class="negative">-8%</td>
@@ -396,27 +393,27 @@
                     <td>Pulsar Helium</td>
                     <td>Canada</td>
                     <td>US/Greenland</td>
-                    <td>220.5</td>
+                    <td>214.8</td>
                     <td><span class="na">n/a</span></td>
-                    <td class="positive">96%</td>
-                    <td class="positive">88%</td>
-                    <td class="positive">127%</td>
-                    <td class="positive">243%</td>
-                    <td class="positive">250%</td>
-                    <td class="positive">231%</td>
+                    <td class="positive">91%</td>
+                    <td class="positive">83%</td>
+                    <td class="positive">122%</td>
+                    <td class="positive">235%</td>
+                    <td class="positive">241%</td>
+                    <td class="positive">223%</td>
                 </tr>
                 <tr>
                     <td>Quantum Helium</td>
                     <td>UK</td>
                     <td>US</td>
-                    <td>17.2</td>
+                    <td>17.4</td>
                     <td>2.1</td>
-                    <td class="positive">2%</td>
-                    <td class="positive">2%</td>
-                    <td class="positive">50%</td>
-                    <td class="positive">34%</td>
-                    <td class="negative">-15%</td>
-                    <td class="positive">135%</td>
+                    <td class="positive">3%</td>
+                    <td class="positive">3%</td>
+                    <td class="positive">52%</td>
+                    <td class="positive">36%</td>
+                    <td class="negative">-14%</td>
+                    <td class="positive">137%</td>
                 </tr>
                 <tr>
                     <td>US Energy Corp</td>
@@ -461,10 +458,10 @@
                     <td>Sum/Average</td>
                     <td></td>
                     <td></td>
-                    <td>702.1</td>
+                    <td>695.9</td>
                     <td>(32.2)</td>
                     <td class="positive">20%</td>
-                    <td class="positive">19%</td>
+                    <td class="positive">18%</td>
                     <td class="positive">7%</td>
                     <td class="positive">27%</td>
                     <td class="positive">43%</td>
